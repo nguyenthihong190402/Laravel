@@ -42,9 +42,10 @@ class CustomAuthController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone' => 'required|min:10',
+            'phone' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+            'password_confirmation' => 'required_with:password|same:password|min:6'
         ]);
 
         $data = $request->all();
@@ -59,7 +60,7 @@ class CustomAuthController extends Controller
             'name' => $data['name'],
             'phone' => $data['phone'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
         ]);
     }
 
