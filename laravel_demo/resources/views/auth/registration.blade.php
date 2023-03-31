@@ -24,6 +24,13 @@
                                     @endif
                                 </div>
                                 <div class="form-group mb-3">
+                                    <input type="tel" placeholder="Phone" id="phone" class="form-control"
+                                           name="phone" required>
+                                    @if ($errors->has('phone'))
+                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-group mb-3">
                                     <input type="password" placeholder="Password" id="password" class="form-control"
                                            name="password" required>
                                     @if ($errors->has('password'))
@@ -31,10 +38,10 @@
                                     @endif
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input type="tel" placeholder="Phone" id="phone" class="form-control"
-                                           name="phone" required>
-                                    @if ($errors->has('phone'))
-                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                    <input type="password" placeholder="Confim Password" id="password_confirmation" class="form-control"
+                                           name="password_confirmation" required>
+                                    @if ($errors->has('password_confirmation'))
+                                        <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
                                     @endif
                                 </div>
                                 <div class="form-group mb-3">
