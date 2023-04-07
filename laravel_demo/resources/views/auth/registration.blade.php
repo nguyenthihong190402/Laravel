@@ -7,7 +7,7 @@
                     <div class="card">
                         <h3 class="card-header text-center">Register User</h3>
                         <div class="card-body">
-                            <form action="{{ route('register.custom') }}" method="POST">
+                            <form action="{{ route('register.custom') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <input type="text" placeholder="Name" id="name" class="form-control" name="name"
@@ -21,6 +21,13 @@
                                            name="email" required autofocus>
                                     @if ($errors->has('email'))
                                         <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="file" id="image" class="form-control"
+                                           name="image" required autofocus>
+                                    @if ($errors->has('image'))
+                                        <span class="text-danger">{{ $errors->first('image') }}</span>
                                     @endif
                                 </div>
                                 <div class="form-group mb-3">

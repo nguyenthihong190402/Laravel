@@ -42,15 +42,20 @@ class CustomAuthController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'image' => 'required',
             'phone' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
             'password_confirmation' => 'required_with:password|same:password|min:6'
         ]);
 
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+        
         $data = $request->all();
+        $data[] = $imageName;
         $check = $this->create($data);
-
+        
         return redirect("dashboard")->withSuccess('You have signed-in');
     }
 
@@ -58,6 +63,7 @@ class CustomAuthController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'image' => $data['image'],
             'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
